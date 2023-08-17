@@ -1,6 +1,11 @@
-import "dotenv/config";
+import { config } from "dotenv";
 import { z } from "zod";
-process.env.DATABASE_URL;
+
+if (process.env.NODE_ENV === "test") {
+  config({ path: ".env.test" });
+} else {
+  config();
+}
 
 //Explain what's the format.
 const envSchema = z.object({
